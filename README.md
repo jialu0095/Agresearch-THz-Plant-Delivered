@@ -39,11 +39,11 @@ pip3 install Terasense-4.0.1-py3-none-any.whl
 ```
 
 1. Install driver for the device controller by clicking `FrontPanelUSB-DriverOnly-5.0.2.exe` , the .exe file is in `/THz Camera packages/driver`
-    
+   
     ![Untitled](THz%20System%20Manual%200d2fe8c169dc4ca4b82eec44b939f44e/Untitled.png)
     
 2. Then find the software file `TSV.pyw` in `Python3x\Scripts\TSV.pyw` or `Anaconda\Scripts\TSV.pyw`. And make a shortcut for the file by simply copy it in your working directory.
-    
+   
     ![Untitled](THz%20System%20Manual%200d2fe8c169dc4ca4b82eec44b939f44e/Untitled%201.png)
     
 
@@ -151,7 +151,27 @@ xlabel = 'Time [/20mins]'   # x-axis label
 plot_rwc_data(x_values, RWC_gravimetric_GA66_1, RWC_THz_GA66_1_nominal, RWC_THz_GA66_1_std, 'Plant GA66-1', xlabel)
 ```
 
-### **Important Notes**
+## plantexpr_I0.py
+
+This script is to check how the data looks like in the middle of the experiment through I_0. (I_0 = 10^(dB/10)*intensity) 
+
+Change `times` to current dry time. e.g. now is the 7th dry time:
+```python
+times = 7
+```
+
+Set the file name
+
+```python
+# data file name
+test_group = 'wet'
+group_number = "3"
+plant_label = "test"
+```
+
+
+
+## Important Notes
 
 - Modify and review the script carefully when changing datasets or plant species to ensure the paths and data file names match those in your directory.
 - Keep backups of original data to avoid accidental data loss during script execution or kernel restarts.
