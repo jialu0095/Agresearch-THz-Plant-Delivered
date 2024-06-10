@@ -61,6 +61,20 @@ red yellow green: high pixel value
 
 blue black: low pixel value
 
+## Data File Naming
+
+```
+I_wet{trail NO.}_{species}{species NO.}	    # intensity(pixel value) file
+dB_wet{trail NO.}_{species}{species NO.}	# attenuation file
+
+e.g. Data collected at 2nd time for the second GA66 (suppose you have more than 1 GA66 for the experiment)
+I_wet2_GA66_1.csv
+dB_wet2_GA66_1.csv
+
+```
+
+
+
 ## thz_source_adjust.py
 
 This script is for adjusting the attenuation of the terasense source.
@@ -99,20 +113,20 @@ COM_port = 'COM3'
 
 ```python
 # data file name
-test_group = 'wet'
 group_number = "3"
-plant_label = "test"
-title = test_group + group_number + '_' + plant_label
+species = "GA66"
+plant_number = "1"
+title = 'wet' + group_number + '_' + species + "_" + plant_number
 ```
 
 1. Set the working area (take scan of whole screen by default)
 
 ```python
-# data file name
-test_group = 'wet'
-group_number = "3"
-plant_label = "test"
-title = test_group + group_number + '_' + plant_label
+# set the working area
+x_left = 0
+x_right = 31
+y_top = 0
+y_bottom = 31
 ```
 
 Run the python file to collect the data. When you see the output `data saved!` , that means the data is collected successfully.
@@ -127,17 +141,20 @@ This script is for calculating RWC(relative water content) with THz data and gra
 1. Use the function `run_single_experiment` to execute an experiment, providing the plant ID, experiment ID, number of time points, and gravimetric data. This function handles the entire process, from data loading to RWC calculation and nominal value adjustment. The return variable is THz RWC nominal value and THz RWC std.
 
 ```python
+# %% GA66_1 THz&gravimetric RWC results
+# suppose you have toke 8 scans for the first GA66 (suppose you have more than one GA66 plants)
 
-plant_id = 'GA66'   # plant breed
+species = 'GA66'   # plant breed
 times = 8   # number of dry times
 
 # Define experiment parameters for the first experiment
-experiment_id_1 = '1'
+plant_number = '1'
 RWC_gravimetric_GA66_1 = [0.978070175, 0.936090226, 0.974576271, 0.883802817, 0.821917808, 0.746153846, 0, 0]
 
 # Run experiment for the first ID
-RWC_THz_GA66_1_nominal, RWC_THz_GA66_1_std = run_single_experiment(plant_id, experiment_id_1, times, RWC_gravimetric_GA66_1)
-print(f"Results for {plant_id}_{experiment_id_1}: Nominal - {RWC_THz_GA66_1_nominal}, Std - {RWC_THz_GA66_1_std}")
+RWC_THz_GA66_1_nominal, RWC_THz_GA66_1_std = run_single_experiment(species, plant_number, times, RWC_gravimetric_GA66_1)
+print(f"Results for {species}_{plant_number}: Nominal - {RWC_THz_GA66_1_nominal}, Std - {RWC_THz_GA66_1_std}")
+
 ```
 
 1. Use the provided `plot_rwc_data` to visualize RWC data. The function accepts time points, RWC data (gravimetric and THz), and plot labels.
@@ -153,7 +170,7 @@ plot_rwc_data(x_values, RWC_gravimetric_GA66_1, RWC_THz_GA66_1_nominal, RWC_THz_
 
 ## plantexpr_I0.py
 
-This script is to check how the data looks like in the middle of the experiment through I_0. (I_0 = 10^(dB/10)*intensity) 
+This script is to check how the data looks like in the middle of the experiment through I_0. ( *I_0 = 10^(dB/10)\*I* )
 
 Change `times` to current dry time. e.g. now is the 7th dry time:
 ```python
@@ -164,12 +181,11 @@ Set the file name
 
 ```python
 # data file name
-test_group = 'wet'
-group_number = "3"
-plant_label = "test"
+species = "GA66"
+plant_number = "1"
 ```
 
-
+As the drying time increases, you should observe an increasing trend in I_0.
 
 ## Important Notes
 

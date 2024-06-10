@@ -41,14 +41,14 @@ I_test_plant = [[] for _ in range(times)]
 dB_test_plant = [[] for _ in range(times)]
 
 # data file name
-test_group = 'wet'
-plant_label = "test"
+species = "GA66"
+plant_number = "1"
 
 for i in range(0,times):
     print(i)
     
-    I_test_plant[i] = np.loadtxt('I_'+test_group+str(i+1)+'_'+plant_label+'.csv', delimiter=' ', comments='#')
-    dB_test_plant[i] = np.loadtxt('dB_'+test_group+str(i+1)+'_'+plant_label+'.csv', delimiter=' ', comments='#')
+    I_test_plant[i] = np.loadtxt('I_wet'+str(i+1)+'_'+species + '_' + plant_number + '.csv', delimiter=' ', comments='#')
+    dB_test_plant[i] = np.loadtxt('dB_wet'+str(i+1)+'_'+species + '_' + plant_number + '.csv', delimiter=' ', comments='#')
 
 I0_test_plant = cal_mean_I0(I_test_plant, '', dB_test_plant, '', times)
 print('I_0: ', I0_test_plant)

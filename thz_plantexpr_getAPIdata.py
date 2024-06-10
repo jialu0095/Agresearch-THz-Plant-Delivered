@@ -13,10 +13,10 @@ print(os.getcwd())
 COM_port = 'COM3'
 
 # data file name
-test_group = 'wet'
 group_number = "3"
-plant_label = "test"
-title = test_group + group_number + '_' + plant_label
+species = "GA66"
+plant_number = "1"
+title = 'wet' + group_number + '_' + species + "_" + plant_number
 
 # set the working area
 x_left = 0

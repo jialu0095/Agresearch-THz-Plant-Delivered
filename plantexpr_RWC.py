@@ -137,9 +137,9 @@ def THz_results(species, plant_number, times):
     return RWC_THz
 
 # run single experiment
-def run_single_experiment(plant_id, experiment_id, times, gravimetric_data):
+def run_single_experiment(species, plant_number, times, gravimetric_data):
     # Retrieve THz measurement results for the specified experiment
-    thz_results = THz_results(plant_id, experiment_id, times)
+    thz_results = THz_results(species, plant_number, times)
     
     # Calculate adjusted nominal values and standard deviations
     nominal, std = calculate_adjusted_nominal_std(thz_results, gravimetric_data)
@@ -170,24 +170,24 @@ def plot_rwc_data(x_values, rwc_gravimetric, rwc_thz_nominal, rwc_thz_std, title
 
 # %% GA66_1 and GA66_2 THz&gravimetric RWC results
 
-plant_id = 'GA66'   # plant breed
+species = 'GA66'   # plant breed
 times = 8   # number of dry times
 
 # Define experiment parameters for the first experiment
-experiment_id_1 = '1'
+plant_number = '1'
 RWC_gravimetric_GA66_1 = [0.978070175, 0.936090226, 0.974576271, 0.883802817, 0.821917808, 0.746153846, 0, 0]
 
 # Run experiment for the first ID
-RWC_THz_GA66_1_nominal, RWC_THz_GA66_1_std = run_single_experiment(plant_id, experiment_id_1, times, RWC_gravimetric_GA66_1)
-print(f"Results for {plant_id}_{experiment_id_1}: Nominal - {RWC_THz_GA66_1_nominal}, Std - {RWC_THz_GA66_1_std}")
+RWC_THz_GA66_1_nominal, RWC_THz_GA66_1_std = run_single_experiment(species, plant_number, times, RWC_gravimetric_GA66_1)
+print(f"Results for {species}_{plant_number}: Nominal - {RWC_THz_GA66_1_nominal}, Std - {RWC_THz_GA66_1_std}")
 
 # Define parameters for the second experiment
-experiment_id_2 = '2'
+plant_number = '2'
 RWC_gravimetric_GA66_2 = [0.988095238, 0.97761194, 0.965909091, 0.935185185, 0.888888889, 0.810810811, 0, 0]
 
 # Run experiment for the second ID
-RWC_THz_GA66_2_nominal, RWC_THz_GA66_2_std = run_single_experiment(plant_id, experiment_id_2, times, RWC_gravimetric_GA66_2)
-print(f"Results for {plant_id}_{experiment_id_2}: Nominal - {RWC_THz_GA66_2_nominal}, Std - {RWC_THz_GA66_2_std}")
+RWC_THz_GA66_2_nominal, RWC_THz_GA66_2_std = run_single_experiment(species, plant_number, times, RWC_gravimetric_GA66_2)
+print(f"Results for {species}_{plant_number}: Nominal - {RWC_THz_GA66_2_nominal}, Std - {RWC_THz_GA66_2_std}")
 
 #%% plot RWC data with functions
 # Define the x-axis values and plot parameters
